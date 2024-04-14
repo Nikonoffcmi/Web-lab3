@@ -1,5 +1,6 @@
 import updateTerms, {calculate} from "./main.js";
 import "./style.css"
+import './hhwidget.js';
 
 updateTerms();
 var termSelect = document.getElementById("depositType");

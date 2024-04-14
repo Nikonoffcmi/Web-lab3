@@ -16,7 +16,17 @@
   \**********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _main_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./main.js */ \"./src/main.js\");\n/* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./style.css */ \"./src/style.css\");\n\n\n(0,_main_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"])();\nvar termSelect = document.getElementById(\"depositType\");\ntermSelect.onchange = _main_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"];\nvar btn = document.getElementById(\"btn\");\nbtn.onclick = _main_js__WEBPACK_IMPORTED_MODULE_0__.calculate;\n\n//# sourceURL=webpack://web-lab3/./src/entry.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _main_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./main.js */ \"./src/main.js\");\n/* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./style.css */ \"./src/style.css\");\n/* harmony import */ var _hhwidget_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./hhwidget.js */ \"./src/hhwidget.js\");\n\n\n\n(0,_main_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"])();\nvar termSelect = document.getElementById(\"depositType\");\ntermSelect.onchange = _main_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"];\nvar btn = document.getElementById(\"btn\");\nbtn.onclick = _main_js__WEBPACK_IMPORTED_MODULE_0__.calculate;\n\n//# sourceURL=webpack://web-lab3/./src/entry.js?");
+
+/***/ }),
+
+/***/ "./src/hhwidget.js":
+/*!*************************!*\
+  !*** ./src/hhwidget.js ***!
+  \*************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   createCard: () => (/* binding */ createCard),\n/* harmony export */   displayCards: () => (/* binding */ displayCards),\n/* harmony export */   requestVacancies: () => (/* binding */ requestVacancies)\n/* harmony export */ });\ndocument.addEventListener('DOMContentLoaded', function () {\n  const button = document.getElementById('findButton');\n  if (button) {\n    button.addEventListener('click', function () {\n      requestVacancies();\n    });\n  } else {\n    console.error('Кнопка с id=\"findButton\" не найдена.');\n  }\n});\nfunction requestVacancies() {\n  let searchText = document.getElementById(\"search-input\").value;\n  axios.get(`https://api.hh.ru/vacancies?text=${searchText}`).then(response => {\n    const data = response.data;\n    displayCards(data);\n  }).catch(error => {\n    console.error('Ошибка при загрузке данных о вакансии:', error);\n  });\n}\nfunction createCard(cardData) {\n  var card = document.createElement(\"div\");\n  card.classList.add(\"card\");\n  let salaryMessage;\n  if (cardData.salary && cardData.salary.from == null) {\n    salaryMessage = \"Требуется уточнение\";\n  } else {\n    salaryMessage = cardData.salary && cardData.salary.from ? cardData.salary.from : \"Требуется уточнение\";\n  }\n  card.innerHTML = `\n        <h2>${cardData.name}</h2>\n        <p>Зарплата от ${salaryMessage}</p>\n        <a href=\"${cardData.alternate_url}\" target=\"_blank\">Подробнее</a>\n    `;\n  return card;\n}\nfunction displayCards(data) {\n  let items = data.items;\n  var cardContainer = document.getElementById(\"card-container\");\n  cardContainer.innerHTML = \"\";\n  items.forEach(function (item) {\n    var card = createCard(item);\n    cardContainer.appendChild(card);\n  });\n}\n\n//# sourceURL=webpack://web-lab3/./src/hhwidget.js?");
 
 /***/ }),
 
