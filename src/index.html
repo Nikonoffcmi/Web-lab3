@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Deposit-Calculator</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" href="style.css"/>
+    </head>
+    <body>
+        <div id="calculator">
+            <select id="depositType">
+                <option>Пополняемый</option>
+                <option>Срочный</option>
+            </select>
+            <select id="term"></select>
+            <input id="amount" type="number" min="0" placeholder="Сумма вклада, руб." required>
+            <p id="error"></p>
+            <button id="btn">Рассчитать</button>
+            <textarea id="result" readonly></textarea>
+        </div>
+        <script type="text/javascript" src="main.js"></script>
+    </body>
+</html>
