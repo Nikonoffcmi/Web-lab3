@@ -15,6 +15,7 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: path.resolve(__dirname, './src/index.html'),
             filename: 'index.html',
+            title: "Калькулятор вкладов"
         }),
     ],
     module: {
@@ -32,12 +33,6 @@ module.exports = {
     },
 
     devServer: {
-        historyApiFallback: {
-            index: 'index.html'
-        },
-        static: {
-            directory: path.join(__dirname, './build'), 
-        },
         open: true,
         compress: true,
         hot: true,
